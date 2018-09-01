@@ -3,9 +3,10 @@
 body,
 button,
 textarea,
-input {
+input,
+select {
   font-size: 1em;
-  font-family: 'Andale Mono', monospace;
+  font-family: 'Andale Mono', menlo, monospace;
 }
 
 body {
@@ -47,6 +48,7 @@ select {
   border: 1px;
   border-color: silver;
   border-style: solid;
+  box-sizing: border-box;
 }
 
 input[type=checkbox],
