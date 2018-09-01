@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>micropub!</title>
+    <meta name="description" content="micropub">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="https://cdn.glitch.com/3e11e9f9-71be-4ae2-aec9-01c7874c07b6%2Fmp.png?1535647683925" />
+    <link rel="apple-touch-icon" href="https://cdn.glitch.com/3e11e9f9-71be-4ae2-aec9-01c7874c07b6%2Fmp.png?1535647683925" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https://cdn.glitch.com/3e11e9f9-71be-4ae2-aec9-01c7874c07b6%2Fmp.png?1535647683925" />
+    <link href="/main.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <header>
+      <h1>Micropub</h1>
+    </header>
+
+    <main>
+      <p>
+        <a href="?action=create">Create an entry</a><br>
+        <a href="?action=update">Update an entry</a><br>
+        <a href="?action=delete">Delete/Restore an entry</a>
+        {{#media_endpoint}}<br><a href="?action=upload">Upload</a>{{/media_endpoint}}
+      </p>
+      {{#create}}
+      <h2>Create an entry</h2>
+      <p>
+        Posting to: <mark>{{endpoint}}</mark>
+      </p>
+      <form method="post" enctype="multipart/form-data">
+        <input type="hidden" value="entry" name="h" required>
+        <label for="name">Entry name</label>
+        <input type="text" name="name" id="name">
+        <label for="content">Content</label>
+        <textarea name="content" id="content" rows="10" required></textarea>
+        <label for="photo">Photo</label>
+        <input type="file" name="photo" id="photo" accept="image/*">
+        <label for="category">Category</label>
+        <select name="category" id="category" multiple><option>foo</option><option>bar</option></select>
+        <label>Post as</label>
+        <label><input type="radio" value="form" name="as" required checked> FormData</label>
+        <label><input type="radio" value="json" name="as" required> JSON</label>
+        <!--<label for="photo">Photo URL</label>
+        <input type="url" name="photo" id="photo">-->
+        <button type="submit">Save</button>
+      </form>
+      {{/create}}
+      {{#update}}
+      <h2>Update an entry</h2>
+      <p>
+        Posting to: <mark>{{endpoint}}</mark>
+      </p>
+      <form method="post">
+        <input type="hidden" value="json" name="as" required>
+        <input type="hidden" value="update" name="action" required>
+        <label for="url">URL to update</label>
+        <input type="url" name="url" id="url">
+        <label for="replace[content]">New content</label>
+        <!-- https://micropub.net/draft/#h-update says content needs to be an Array, who knows why? -->
+        <textarea name="replace[content][]" id="replace[content]" rows="10" required></textarea>
+        <button type="submit">Save</button>
+      </form>
+      {{/update}}
+      {{#delete}}
+      <h2>Delete/Restore an entry</h2>
+      <p>
+        Posting to: <mark>{{endpoint}}</mark>
+      </p>
+      <form method="post">
+        <label><input type="radio" value="delete" name="action" required checked> Delete</label>
+        <label><input type="radio" value="undelete" name="action" required> Restore</label>
+        <label for="delete-url">URL to delete or restore</label>
+        <input type="url" name="url" id="delete-url">
+        <button type="submit">Save</button>
+      </form>
+      {{/delete}}
+      {{#upload}}
+      <h2>Upload</h2>
+      <p>
+        Posting to: <mark>{{media_endpoint}}</mark>
+      </p>
+      <form method="post" enctype="multipart/form-data">
+        <label for="file">File</label>
+        <input type="file" name="file" id="file">
+        <button type="submit">Save</button>
+      </form>
+      {{/upload}}
+    </main>
+    <footer>
+      <hr>
+      <p><small>Logged in with {{me}}.</small></p>
+      <form method="post" action="/logout">
+        <button type="submit">
+          Logout
+        </button>
+      </form>
+    </footer>
+  </body>
+</html>

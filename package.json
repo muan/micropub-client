@@ -1,0 +1,32 @@
+{
+  "name": "muan-micropub-client",
+  "version": "0.0.1",
+  "description": "A micropub client.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "body-parser": "1.18.3",
+    "request": "2.88.0",
+    "cheerio": "1.0.0-rc.2",
+    "mustache-express": "1.2.7",
+    "express-fileupload": "0.4.0",
+    "express-session": "1.15.6",
+    "session-file-store": "1.2.0"
+  },
+  "engines": {
+    "node": "10.5.x"
+  },
+  "repository": {
+    "url": "https://github.com/muan/micropub-client"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express",
+    "micropub"
+  ]
+}

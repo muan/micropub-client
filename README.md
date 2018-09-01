@@ -1,3 +1,3 @@
-# micropub-client
+# Micropub client
 
-> Your repo needs to have a at least one file in it already. – Glitch
+In Node/Express. Rails has spoiled me.
