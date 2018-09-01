@@ -153,6 +153,7 @@ app.post('/new', async function(req, res) {
         result = 'Success'
         url = resres.headers.location
       } else {
+        result = resres.statusCode
         error = body ? body.error_description : resres.statusCode
       }
     }

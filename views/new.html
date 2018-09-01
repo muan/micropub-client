@@ -20,12 +20,12 @@
     </header>
 
     <main>
-      <p>
-        <a href="?action=create">Create an entry</a><br>
-        <a href="?action=update">Update an entry</a><br>
-        <a href="?action=delete">Delete/Restore an entry</a>
-        {{#media_endpoint}}<br><a href="?action=upload">Upload</a>{{/media_endpoint}}
-      </p>
+      <ol>
+        <li><a href="?action=create">Create an entry</a></li>
+        <li><a href="?action=update">Update an entry</a></li>
+        <li><a href="?action=delete">Delete/Restore an entry</a></li>
+        {{#media_endpoint}}<li><a href="?action=upload">Upload</a></li>{{/media_endpoint}}
+      </ol>
       {{#create}}
       <h2>Create an entry</h2>
       <p>
