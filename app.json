@@ -1,0 +1,12 @@
+{
+  "name": "Micropub client",
+  "description": "A micropub client for a GitHub Pages site.",
+  "repository": "https://github.com/muan/micropub-endpoint",
+  "keywords": ["micropub"],
+  "env": {
+    "SECRET": {
+      "description": "App secret.",
+      "generator": "secret"
+    }
+  }
+}
