@@ -6,12 +6,12 @@ const upload = require('express-fileupload')
 const bodyParser = require('body-parser')
 const request = require('request')
 const cherrio = require('cheerio')
-const site = 'https://muan-micropub-client.glitch.me/'
-const redirectURI = 'https://muan-micropub-client.glitch.me/auth/callback'
+const site = 'https://micropub-client.herokuapp.com/'
+const redirectURI = 'https://micropub-client.herokuapp.com/auth/callback'
 const mustacheExpress = require('mustache-express')
 const fs = require('fs')
 
-app.set('trust proxy', true) 
+app.set('trust proxy', true)
 app.use(session({
   store: new FileStore({path: './.data/sessions'}),
   secret: process.env.SECRET,
@@ -132,7 +132,7 @@ app.post('/new', async function(req, res) {
     format = 'formData'
   } else {
     format = 'form'
-  } 
+  }
   if (req.body.as === 'json') {
     options.body = req.body
     if (req.query.action === 'create') {
