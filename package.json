@@ -12,7 +12,7 @@
     "request": "2.88.0",
     "cheerio": "1.0.0-rc.2",
     "mustache-express": "1.2.7",
-    "express-fileupload": "0.4.0",
+    "express-fileupload": "1.1.9",
     "express-session": "1.15.6",
     "session-file-store": "1.2.0"
   },
