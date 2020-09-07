@@ -11,6 +11,7 @@ const site = 'https://micropub-client.herokuapp.com/'
 const redirectURI = 'https://micropub-client.herokuapp.com/auth/callback'
 const mustacheExpress = require('mustache-express')
 const fs = require('fs')
+const URL = require('url')
 
 app.set('trust proxy', true)
 app.use(session({
@@ -30,9 +31,9 @@ app.set('view engine', 'mustache')
 app.get('/', function(req, res) {
   console.log('get /')
   if (hasSession(req)) return res.redirect('/new')
-  res.render('index.html', {
-    url: req.query.url
-  })
+  const parsed = URL.parse(req.query.url || '')
+  const url = parsed.hostname ? parsed.href : null
+  res.render('index.html', {url})
 })
 
 app.post('/logout', function(req, res) {
@@ -41,7 +42,7 @@ app.post('/logout', function(req, res) {
     console.log(err)
     // LOL no error but [session-file-store] will retry, error on last attempt: Error: ENOENT: no such file or directory
     // https://github.com/valery-barysok/session-file-store/issues/41#issuecomment-271166358
-    res.redirect('/login')
+    res.redirect('/')
   })
 })
 
@@ -99,7 +100,7 @@ app.get('/auth/callback', async function(req, res) {
 
 app.get('/new', async function(req, res) {
   console.log('get /new')
-  if (!hasSession(req)) return res.redirect('/login')
+  if (!hasSession(req)) return res.redirect('/')
   try {
     const {me, endpoint, config} = req.session._mp
     const locals = {me, endpoint, media_endpoint: config && config['media-endpoint']}
