@@ -104,7 +104,7 @@ app.get('/new', async function(req, res) {
   try {
     const {me, endpoint, config} = req.session._mp
     const locals = {me, endpoint, media_endpoint: config && config['media-endpoint']}
-    const action = req.query.action || 'choose'
+    const action = req.query.action || 'create'
     locals[action] = true
     res.render('new.html', locals)
   } catch(err) {
