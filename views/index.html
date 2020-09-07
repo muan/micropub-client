@@ -16,13 +16,13 @@
   </head>
   <body>
     <header>
-      <h1>Micropub</h1>
+      <h1>Micropub client</h1>
     </header>
 
     <main>
       <form action="/login" method="post">
-        <label for="url">URL</label>
-        <input type="url" id="url" name="url" value="{{url}}" required>
+        <label for="url">Site URL</label>
+        <input type="url" id="url" name="url" value="{{url}}" autofocus required>
         <button type="submit">Log in</button>
       </form>
     </main>

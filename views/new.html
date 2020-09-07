@@ -16,16 +16,16 @@
   </head>
   <body>
     <header>
-      <h1>Micropub</h1>
+      <h1>Micropub client</h1>
     </header>
 
     <main>
-      <ol>
-        <li><a href="?action=create">Create an entry</a></li>
-        <li><a href="?action=update">Update an entry</a></li>
-        <li><a href="?action=delete">Delete/Restore an entry</a></li>
-        {{#media_endpoint}}<li><a href="?action=upload">Upload</a></li>{{/media_endpoint}}
-      </ol>
+      <nav>
+        <a href="?action=create">Create an entry</a>
+        <a href="?action=update">Update an entry</a>
+        <a href="?action=delete">Delete or restore an entry</a>
+        {{#media_endpoint}}<a href="?action=upload">Upload</a>{{/media_endpoint}}
+      </nav>
       {{#create}}
       <h2>Create an entry</h2>
       <p>
@@ -44,8 +44,6 @@
         <label>Post as</label>
         <label><input type="radio" value="form" name="as" required checked> FormData</label>
         <label><input type="radio" value="json" name="as" required> JSON</label>
-        <!--<label for="photo">Photo URL</label>
-        <input type="url" name="photo" id="photo">-->
         <button type="submit">Save</button>
       </form>
       {{/create}}
@@ -66,13 +64,15 @@
       </form>
       {{/update}}
       {{#delete}}
-      <h2>Delete/Restore an entry</h2>
+      <h2>Delete or restore an entry</h2>
       <p>
         Posting to: <mark>{{endpoint}}</mark>
       </p>
       <form method="post">
-        <label><input type="radio" value="delete" name="action" required checked> Delete</label>
-        <label><input type="radio" value="undelete" name="action" required> Restore</label>
+        <fieldset>
+          <label><input type="radio" value="delete" name="action" required checked>Delete</label>
+          <label><input type="radio" value="undelete" name="action" required>Restore</label>
+        </fieldset>
         <label for="delete-url">URL to delete or restore</label>
         <input type="url" name="url" id="delete-url">
         <button type="submit">Save</button>
@@ -92,7 +92,7 @@
     </main>
     <footer>
       <hr>
-      <p><small>Logged in with {{me}}.</small></p>
+      <p><small>Logged in with <strong>{{me}}</strong>.</small></p>
       <form method="post" action="/logout">
         <button type="submit">
           Logout
