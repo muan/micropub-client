@@ -30,13 +30,9 @@ app.set('view engine', 'mustache')
 app.get('/', function(req, res) {
   console.log('get /')
   if (hasSession(req)) return res.redirect('/new')
-  res.render('index.html')
-})
-
-app.get('/login', function(req, res) {
-  console.log('get /login')
-  if (hasSession(req)) return res.redirect('/new')
-  res.render('login.html')
+  res.render('index.html', {
+    url: req.query.url
+  })
 })
 
 app.post('/logout', function(req, res) {

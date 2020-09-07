@@ -20,7 +20,11 @@
     </header>
 
     <main>
-      <p><a href="/login">log in here</a></p>
+      <form action="/login" method="post">
+        <label for="url">URL</label>
+        <input type="url" id="url" name="url" value="{{url}}" required>
+        <button type="submit">Log in</button>
+      </form>
     </main>
   </body>
 </html>
